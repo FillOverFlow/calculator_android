@@ -4,6 +4,7 @@ package com.example.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import android.widget.Button
@@ -238,7 +239,8 @@ class MainActivity : AppCompatActivity() {
 
 
         while (i < strPostfix.length){
-
+            Log.i("debug","i: $i")
+            Log.i("debug","strPostFix: ${strPostfix.length}")
             val ch:String = arrPostfix[i]
             if(isFloat(ch)){
                 calStack.push(ch.toFloat())
@@ -249,33 +251,35 @@ class MainActivity : AppCompatActivity() {
                     b = calStack.pop()
                     result = a + b
                     calStack.push(result)
-
-                    return result
+                    Log.i("debug","result")
 
                 }else if(ch.equals("-")){
                     a = calStack.pop()
                     b = calStack.pop()
                     result = a - b
                     calStack.push(result)
-                    return result
+
                 }else if(ch.equals("*")){
                     a = calStack.pop()
                     b = calStack.pop()
                     result = a * b
                     calStack.push(result)
-                    return result
+
                 }else if(ch.equals("/")){
                     a = calStack.pop()
                     b = calStack.pop()
                     result = b / a
                     calStack.push(result)
-                    return result
+
                 }else if(ch.equals(" ")){
                    print("test")
                 }
             }
 
-            i++
+            if(i<=3){
+                i++
+            }
+
 
         }
         return result
